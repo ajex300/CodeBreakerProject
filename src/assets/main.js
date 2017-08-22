@@ -1,6 +1,7 @@
 var answer = document.getElementById('answer');
 var attempt = document.getElementById('attempt');
 const MAX_ATTEMPTS = 10;
+const MAX_INPUT = 4;
 const RESULTS_DIV = document.getElementById('results').innerHTML;
 
 if (answer.value == '' || attempt.value == '')
@@ -8,28 +9,31 @@ if (answer.value == '' || attempt.value == '')
 
 function guess() {
     input = document.getElementById('user-guess');
+
     //add functionality to guess function here
-    console.log(input.value);
-    if (validateInput(input.value))
+    var myinput = input.value;
+    console.log(myinput);
+    myinput = validateInput(myinput);
+    if (myinput != '')
     {
-        guesses = Number(attempt.value);
-        if (getResults(input.value, answer.value))
+        attempts = Number(attempt.value);
+        if (getResults(myinput, answer.value))
         {
-            setMessage("You Won the Game in " + guesses + " guesses!!!!!!!");
+            setMessage("You Won the Game in " + attempts + " guesses!!!!!!!");
             showAnswer(true);
             showReplay();
         }
         else
         {
-            if (guesses >= MAX_ATTEMPTS)
+            if (attempts >= MAX_ATTEMPTS)
             {
-                setMessage("You Lost the Game in " + guesses + " guesses!!!!!!!\nThe correct number is " + answer.value + "!");
+                setMessage("You Lost the Game in " + attempts + " guesses!!!!!!!\nThe correct number is " + answer.value + "!");
                 showAnswer(false);
                 showReplay();
             }
             else
             {
-                attempt.value = guesses + 1;
+                attempt.value = attempts + 1;
                 setMessage("Incorrect, try again.");
             }
         }
@@ -58,11 +62,16 @@ function resetGame() {
 }
 
 function validateInput(input) {
-    if (input.length != 4) {
-        setMessage("Guesses must be exactly 4 digits");
-        return false;
+    console.log(input);
+    if (input.length < MAX_INPUT)
+       return '';
+    if (input[0] == '-' || input[0] == '+')
+        input = input.slice(1);
+    if (input.length != MAX_INPUT) {
+        setMessage("Guesses must be exactly " + MAX_INPUT + " digits");
+        return '';
     }
-    return true;
+    return input;
 }
 
 function setHiddenFields() {
@@ -81,12 +90,11 @@ function getResults(input, answer)
     resultsDiv = document.getElementById('results').innerHTML;
     newrow = '<div class="row"><span class="col-md-6">' + input + '</span>'
     newicons = '';
-    console.log(answer);
     for (i=0; i < input.length; i++)
     {
-        console.log(input[i]);
+//        console.log(input[i]);
         index = answer.indexOf(input[i]);
-        console.log(index);
+//        console.log(index);
         if (index == -1)
             newicons += '<span class="glyphicon glyphicon-remove"></span>';
         else if (answer[i] == input[i]) {
