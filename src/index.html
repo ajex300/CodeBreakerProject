@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <h1>Code Breaker</h1>
         <div class="row">
           <p id="code" class="code">
@@ -41,16 +41,17 @@
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-4">
         <h2>Objective:</h2>
-        <p class="lead">Guess the randomly generated 4 digit code.</p>
+        <p class="lead">Guess the randomly generated code.</p>
 
         <h2>Rules:</h2>
+        <div class="row">
         <ul>
-          <li>Each guess must consist of 4 numeric characters.</li>
+          <li>Each guess must consist of <input id="max_input" class="form-control" type="number" value="4" /> numeric characters.</li>
           <li>Numbers may be used more than once!</li>
           <li>You win only if your guess is an exact match.</li>
-          <li>You lose if you fail to guess the code under 10 guesses.</li>
+          <li>You lose if you fail to guess the code under <input id="max_attempt" class="form-control" type="number" value="10" /> guesses.</li>
           <li>
             <span class="glyphicon glyphicon-ok"></span>
             Indicates a number is in the correct place.
@@ -66,7 +67,11 @@
             <span class="glyphicon glyphicon-remove"></span>
             Indicates a number is not part of the code.
           </li>
+          <li>
+<button class="btn btn-primary" onclick="resetGame()">Reset Game</button>
+          </li>
         </ul>
+        </div>
       </div>
     </div>
     <script src="assets/main.js"></script>
