@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-md-8">
+      <div class="col-md-6">
         <h1>Code Breaker</h1>
         <div class="row">
           <p id="code" class="code">
@@ -26,7 +26,7 @@
         </div>
 
         <div id="replay-div" class="row" style="display:none">
-          <button class="btn btn-primary" onclick="window.location.reload()">Play again?</button>
+          <button class="btn btn-primary" onclick="resetGame()">Play again?</button>
         </div>
 
         <div class="row">
@@ -41,17 +41,17 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-6">
         <h2>Objective:</h2>
         <p class="lead">Guess the randomly generated code.</p>
 
         <h2>Rules:</h2>
-        <div class="row">
+        <div class="row form-inline">
         <ul>
-          <li>Each guess must consist of <input id="max_input" class="form-control" type="number" value="4" /> numeric characters.</li>
+          <li>Each guess must consist of <input id="max_input" class="form-control" type="number" value="4" maxlength="5" /> numeric characters.</li>
           <li>Numbers may be used more than once!</li>
           <li>You win only if your guess is an exact match.</li>
-          <li>You lose if you fail to guess the code under <input id="max_attempt" class="form-control" type="number" value="10" /> guesses.</li>
+          <li>You lose if you fail to guess the code under <input id="max_attempt" class="form-control" type="number" value="10" maxlength="7"/> guesses.</li>
           <li>
             <span class="glyphicon glyphicon-ok"></span>
             Indicates a number is in the correct place.
