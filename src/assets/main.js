@@ -76,8 +76,8 @@ function resetGame() {
     setHiddenFields();
     hideReplay();
     hideAnswer();
-    document.getElementById('user-guess').value = '';
     setMessage("");
+    document.getElementById('user-guess').value = '';
     document.getElementById('results').innerHTML = RESULTS_DIV;
 }
 
@@ -123,7 +123,7 @@ function setMessage(text) {
 }
 
 function getResults(input, answer) {
-    correct = 0;
+    correctDigits = 0;
     resultsDiv = document.getElementById('results').innerHTML;
     newrow = '<div class="row"><span class="col-md-6">' + input + '</span>'
     newicons = '';
@@ -135,7 +135,7 @@ function getResults(input, answer) {
         if (index == -1)
             newicons += '<span class="glyphicon glyphicon-remove"></span>';
         else if (answer[i] == input[i]) {
-            correct++;
+            correctDigits++;
             newicons += '<span class="glyphicon glyphicon-ok"></span>';
         }
         else
@@ -144,5 +144,5 @@ function getResults(input, answer) {
     newrow += newicons;
     newrow += '</div>'
     document.getElementById('results').innerHTML = resultsDiv + newrow;
-    return (correct == input.length);
+    return (correctDigits == input.length);
 }
